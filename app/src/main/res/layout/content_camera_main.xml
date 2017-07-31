@@ -9,6 +9,7 @@
     tools:showIn="@layout/activity_camera_main"
     tools:context="phillipmayland.camerafunctionv2.CameraMainActivity">
 
+    <!-- viser det valgte billede på skærmen -->
     <ImageView
         android:id="@+id/ivImage"
         android:layout_width="368dp"

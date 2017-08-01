@@ -6,8 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:showIn="@layout/activity_camera_main"
-    tools:context="phillipmayland.camerafunctionv2.CameraMainActivity">
+    tools:showIn="@layout/activity_add_image"
+    tools:context="phillipmayland.camerafunctionv2.AddImageActivity">
 
     <!-- viser det valgte billede på skærmen -->
     <ImageView

@@ -22,15 +22,22 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
 
-public class CameraMainActivity extends AppCompatActivity {
+public class AddImageActivity extends AppCompatActivity {
 
+
+    /*skaber egenskaber til billedet.*/
+    ImageView ivImage;
+    Integer REQUEST_CAMERA=1, SELECT_FILE=0;
+
+
+/*initialisere hele aktiviteten/programmet.*/
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_image);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        /*beder om tilladelserne for at programmet kan bruge kamera og galleri*/
         int Permission_All = 1;
 
         String[] Permissions = {Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.MEDIA_CONTENT_CONTROL};
@@ -47,19 +54,22 @@ public class CameraMainActivity extends AppCompatActivity {
                /* Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show(); */
 
-
+                /* bruger næste metode.*/
                 SelectImage();
 
             }
         });
     }
+    /*metode til at vælge opgaver i knappen som fx finde billede på galleri eller tage et nyt billede.*/
     private void SelectImage() {
-
+        /* sequence af char værdier.*/
         final CharSequence[] items={"Camera", "Gallery", "Cancel"};
 
         AlertDialog.Builder builder = new AlertDialog.Builder(AddImageActivity.this);
         builder.setTitle("add Image");
         builder.setItems(items, new DialogInterface.OnClickListener() {
+            /*metode til reagere ud fra hvad man trykker på opdelt i if sætninger.
+            * dvs. hvis man trykker camera så vil den gå over til at kunne tage et nyt billede med kameraet*/
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 if(items[i].equals("Camera")){
@@ -82,6 +92,7 @@ public class CameraMainActivity extends AppCompatActivity {
         });
         builder.show();
     }
+    /*metode til at lave billedet om til et bitmap objekt til at kunne vises på ImageView.*/
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -125,6 +136,7 @@ public class CameraMainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+    /*tjekker for tilladelser er korrekte.*/
     public static boolean hasPermissions (Context context, String... permissions) {
 
         if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.M && context !=null && permissions!=null){
